@@ -90,7 +90,7 @@ This graph appears to show a relationship in the Median Power Outage per State a
 
 These charts show the Median Power Outage Duration for various regions, one by Climate, one by NERC region. These are both geographical distinctions that appear to show a relationship in Outage Duration. The NERC region appears to show a stronger correlation, and will be used for future analysis.
 
-<iframe src="assets/state_out.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/NERC_out.html" width=800 height=600 frameBorder=0></iframe>
 
 *NERC Region and Median Outage Duration - visualized*
 
