@@ -1,2 +1,1 @@
-# power-outages-analysis
-Project for DSC80
+Testing that this project works as I think it does?
