@@ -129,7 +129,7 @@ Looking at these distributions, they do not seem overly different. Additionally,
 
 *Distribution of Absolute Difference of Means based on randomized Land Percentages. NOTE: Black bar represents the observed test statistic
 
-This resulted in a p-valye of .1584, which leads us to fail to reject the null hypothesis that: *"the distribution of Land Percentages is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MCAR (Missing Completely at Random) in comparison to this specific column. 
+This resulted in a p-valye of .1405, which leads us to fail to reject the null hypothesis that: *"the distribution of Land Percentages is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MCAR (Missing Completely at Random) in comparison to this specific column. 
 
 Despite the findings of the last test, the overall missingness of the 'Cause Category Detail' column is **MAR**, as it depends on at least one column (Cause Category). 
 
