@@ -119,6 +119,8 @@ Here we can see that the distributions of the Cause Category appear to be differ
 
 This resulted in a p-value of 0, which leads us to reject the null hypothesis that: *"the distribution of Cause Category is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MAR (Missing at Random) in comparison to this specific column.
 
+Next, I will look at the missingness of the Cause Category Detail in comparison to the percentage of land in the state the outage occured. The distributions of which are below.
+
 <iframe src="assets/land_comp.html" width=800 height=600 frameBorder=0></iframe>
 
 *Distribution of land percentage of the states where power outages occured based on the missingness of Cause Category Detail*
