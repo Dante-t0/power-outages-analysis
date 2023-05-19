@@ -129,9 +129,50 @@ Looking at these distributions, they do not seem overly different. Additionally,
 
 *Distribution of Absolute Difference of Means based on randomized Land Percentages. NOTE: Black bar represents the observed test statistic
 
-This resulted in a p-valye of .1405, which leads us to fail to reject the null hypothesis that: *"the distribution of Land Percentages is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MCAR (Missing Completely at Random) in comparison to this specific column. 
+This resulted in a p-value of .1405, which leads us to fail to reject the null hypothesis that: *"the distribution of Land Percentages is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MCAR (Missing Completely at Random) in comparison to this specific column. 
 
 Despite the findings of the last test, the overall missingness of the 'Cause Category Detail' column is **MAR**, as it depends on at least one column (Cause Category). 
 
 ## Hypothesis Testing
+
+### Question
+
+Which of the major NERC regions is prone to the longer power outages?
+
+- In this case, a *'major'* NERC region is defined as one that has over 1% of the power outages in the dataset
+
+After filtering out the 'not major' NERC regions, the median outage length (in minutes) is defined as the following:
+
+
+| NERC.REGION   |   OUTAGE.DURATION |
+|:--------------|------------------:|
+| ECAR          |            5475   |
+| RFC           |            1672   |
+| FRCC          |            1419   |
+| MRO           |            1245.5 |
+| SPP           |            1134   |
+| TRE           |            1095   |
+| SERC          |             747   |
+| NPCC          |             494   |
+| WECC          |             219.5 |
+
+- We can see that the ECAR region has the highest median power outage duration, at 5475 minutes, with which I will formulate my hypotheses
+
+### Null Hypothesis
+
+NERC Region and Power Outage Duration are not related - The ECAR Region's high median is due to chance alone
+
+### Alternative Hypothesis
+
+Power Outage Duration ARE related - The ECAR Region's higher median is not due to chance alone
+
+### Method
+
+For this hypothesis test, I used the median duration of the NERC region as the test statistic, and a significance level of 0.1. I took *n* random samples from the dataset, where *n* is the number of outages in the ECAR region. I then computed the median, and compared it to the observed median. I repeated this method 100,000 times, and stored it in the following graph:
+
+<iframe src="assets/hyp_test_data.html" width=800 height=600 frameBorder=0></iframe>
+
+*Distribution of ECAR Medians from 100,000 simulations. NOTE: Black bar represents the observed ECAR Median*
+
+This resulted in a p-value of 0, which leads us to reject the null hypothesis. This suggests correlation between NERC Region and Power Outages, due to the significantly improbable median in the ECAR region. This does not confirm causation though, as this is not a randomized controlled trial. 
 
