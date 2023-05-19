@@ -17,6 +17,7 @@ and **56** columns, namely:
 - 'CAUSE.CATEGORY' : the general cause of the outage (e.g. severe weather, intentional attack, etc.)
 - 'CAUSE.CATEGORY.DETAIL' : the specific cause of the outage (e.g. heavy wind, thunderstorm, etc.)
 - 'PCT_LAND' : the percentage of the state that the outage occured that is land
+- 'CUSTOMERS.AFFECTED' : The number of customers affected by the outage
 
 
 
@@ -96,3 +97,38 @@ These charts show the Median Power Outage Duration for various regions, one by C
 
 This visualizes the data above, further confirming the assumed correlation. Most notably is the height of the ECAR region compared to the other regions, and that will be explored further.
 
+## Assessment of Missingness
+
+### NMAR Analysis
+
+I believe there are a couple columns in this dataframe that has missingness that can be attributed to **NMAR** (Not Missing at Random). One of these columns is 'CUSTOMERS.AFFECTED'. This has the possiblity of being NMAR, as the values that are missing could be missing due to their inherently large numbers. This could be due to these numbers being too high to be recorded easily, and therefore instead be represented by a *null* value. There is information that would be helpful to better figure out the reason for its missingness. Examples of such information include: City Population Density or Number of Customer Complaints. If these columns were included in the dataset, then the missingess could be attributed to MAR instead, as they should illustrate statistically higher than normal values for missing values.
+
+### Missingness Dependency
+
+Now I am going to analyze the missingess that can be seen in the 'CAUSE.CATEGORY.DETAIL' column. This column contains missing values that appear to have some correlation to certain columns, and no correlation to others. For example:
+
+<iframe src="assets/Detail_bar.html" width=800 height=600 frameBorder=0></iframe>
+
+*Distribution of Cause Category based on the missigness of Cause Category Detail*
+
+Here we can see that the distributions of the Cause Category appear to be different, depending on whether the value in 'Cause Category Detail' was missing or not. To investigate this missingness further, I performed a permuation test, assessing the *TVD* (Total Variation Distance) between the observed categories, and 10,000 randomized examples. The results were the following:
+
+<iframe src="assets/TVD_cause.html" width=800 height=600 frameBorder=0></iframe>
+
+*Distribution of TVDs based on randomized Cause Categories. NOTE: Black bar represents the observed TVD*
+
+This resulted in a p-value of 0, which leads us to reject the null hypothesis that: *"the distribution of Cause Category is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MAR (Missing at Random) in comparison to this specific column.
+
+<iframe src="assets/land_comp.html" width=800 height=600 frameBorder=0></iframe>
+
+*Distribution of land percentage of the states where power outages occured based on the missingness of Cause Category Detail*
+
+Looking at these distributions, they do not seem overly different. Additionally, most of the percentages are fairly high, with the exception of one group which upon further analysis is Michigan. To analyze the similarities and differences of these distributions, I performed a permutation test, assessing the absolute difference in means of 10,000 randomized examples, and comparing it to the this observed statistic. The results were the following:
+
+<iframe src="assets/diff_land.html" width=800 height=600 frameBorder=0></iframe>
+
+*Distribution of Absolute Difference of Means based on randomized Land Percentages. NOTE: Black bar represents the observed test statistic
+
+This resulted in a p-valye of .1584, which leads us to fail to reject the null hypothesis that: *"the distribution of Land Percentages is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MCAR (Missing Completely at Random) in comparison to this specific column. 
+
+Despite the findings of the last test, the overall missingness of the 'Cause Category Detail' column is **MAR**, as it depends on at least one column (Cause Category). 
