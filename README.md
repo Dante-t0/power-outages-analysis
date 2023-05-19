@@ -125,10 +125,13 @@ This resulted in a p-value of 0, which leads us to reject the null hypothesis th
 
 Looking at these distributions, they do not seem overly different. Additionally, most of the percentages are fairly high, with the exception of one group which upon further analysis is Michigan. To analyze the similarities and differences of these distributions, I performed a permutation test, assessing the absolute difference in means of 10,000 randomized examples, and comparing it to the this observed statistic. The results were the following:
 
-<iframe src="assets/diff_land.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/Diff_land.html" width=800 height=600 frameBorder=0></iframe>
 
 *Distribution of Absolute Difference of Means based on randomized Land Percentages. NOTE: Black bar represents the observed test statistic
 
 This resulted in a p-valye of .1584, which leads us to fail to reject the null hypothesis that: *"the distribution of Land Percentages is the same when Cause Category Detail is missing and when column Cause Category Detail is not missing."*, and conclude that the randomness is MCAR (Missing Completely at Random) in comparison to this specific column. 
 
 Despite the findings of the last test, the overall missingness of the 'Cause Category Detail' column is **MAR**, as it depends on at least one column (Cause Category). 
+
+## Hypothesis Testing
+
